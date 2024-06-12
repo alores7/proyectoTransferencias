@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Generar XML a partir de una Base de Datos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        select {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        a {
+            text-decoration: none;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .index-button {
+            background-color: #FF5733;
+        }
+        .index-button:hover {
+            background-color: #FF8C66;
+        }
+    </style>
+</head>
+<body>
+<h1>Generador de XML</h1>
+<form id="csvForm" method="GET" action="/genXML/generar">
+    <label for="table">Tabla:</label>
+    <select id="table" name="table">
+        <option value="pagoiso20022">pagoiso20022</option>
+    </select>
+    <label for="saveLocation">Guardar en:</label>
+    <input type="text" id="saveLocation" name="saveLocation" placeholder="C:/Users/usuario/Documents/archivo.xml" />
+    <button type="submit">Generar XML</button>
+</form>
+<div class="button-container">
+    <a href="/"><button class="index-button">Volver</button></a>
+</div>
+
+<script>
+    const saveLocationInput = document.getElementById('saveLocation');
+    const exampleText = saveLocationInput.placeholder;
+
+    saveLocationInput.addEventListener('focus', function() {
+        if (saveLocationInput.value === '') {
+            saveLocationInput.placeholder = '';
+        }
+    });
+
+    saveLocationInput.addEventListener('blur', function() {
+        if (saveLocationInput.value === '') {
+            saveLocationInput.placeholder = exampleText;
+        }
+    });
+</script>
+</body>
+</html>
