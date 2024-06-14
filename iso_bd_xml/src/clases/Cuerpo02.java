@@ -2,7 +2,7 @@ package clases;
 
 public class Cuerpo02 {
     private String insrtId;
-    private String refrencia;
+    private String referencia;
     private Double importe;
     private String bicBeneficiario;
     private String nombreBeneficiario;
@@ -13,10 +13,20 @@ public class Cuerpo02 {
     	
     }
 
-	public Cuerpo02(String insrtId, String refrencia, Double importe, String bicBeneficiario, String nombreBeneficiario,
+	public Cuerpo02(String referencia, Double importe, String bicBeneficiario, String nombreBeneficiario,
+			String ibanBeneficiario, String concepto) {
+		this.referencia = referencia;
+		this.importe = importe;
+		this.bicBeneficiario = bicBeneficiario;
+		this.nombreBeneficiario = nombreBeneficiario;
+		this.ibanBeneficiario = ibanBeneficiario;
+		this.concepto = concepto;
+	}
+	
+	public Cuerpo02(String insrtId, String referencia, Double importe, String bicBeneficiario, String nombreBeneficiario,
 			String ibanBeneficiario, String concepto) {
 		this.insrtId = insrtId;
-		this.refrencia = refrencia;
+		this.referencia = referencia;
 		this.importe = importe;
 		this.bicBeneficiario = bicBeneficiario;
 		this.nombreBeneficiario = nombreBeneficiario;
@@ -32,12 +42,12 @@ public class Cuerpo02 {
 		this.insrtId = insrtId;
 	}
 
-	public String getRefrencia() {
-		return refrencia;
+	public String getReferencia() {
+		return referencia;
 	}
 
-	public void setRefrencia(String refrencia) {
-		this.refrencia = refrencia;
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
 	}
 
 	public Double getImporte() {

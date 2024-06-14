@@ -69,7 +69,7 @@ public class GeneradorXMLdesdeExcel {
                         // Asignar datos del CSV a los campos de Cuerpo
                         // Suponiendo que los datos están en el mismo orden que los campos en la clase Cuerpo.java
                         cuerpo.setInsrtId(datos[0]);
-                        cuerpo.setRefrencia(datos[1]);
+                        cuerpo.setReferencia(datos[1]);
                         String importeStr = datos[2].replace(",", ".");
                         cuerpo.setImporte(Double.parseDouble(importeStr));
                         cuerpo.setBicBeneficiario(datos[3]);
@@ -232,7 +232,7 @@ public class GeneradorXMLdesdeExcel {
                 writer.write("\t\t\t<CdtTrfTxInf>\n");
                 writer.write("\t\t\t\t<PmtId>\n");
                 writer.write("\t\t\t\t\t<InstrId>" + cuerpo.getInsrtId() + "</InstrId>\n");
-                writer.write("\t\t\t\t\t<EndToEndId>" + cuerpo.getRefrencia() + "</EndToEndId>\n");
+                writer.write("\t\t\t\t\t<EndToEndId>" + cuerpo.getReferencia() + "</EndToEndId>\n");
                 writer.write("\t\t\t\t</PmtId>\n");
                 writer.write("\t\t\t\t<Amt>\n");
                 writer.write("\t\t\t\t\t<InstdAmt Ccy=\"EUR\">" + cuerpo.getImporte() + "</InstdAmt>\n");

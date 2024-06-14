@@ -16,7 +16,7 @@ public class Cabecera02 {
     
     public Cabecera02() {
     	
-    }	
+    }
 	
 	public Cabecera02(int idMensaje, String fecha, String hora, int numeroOperaciones, Double controlSuma,
 			String nombreOrdenante, String nifOrdenante, String ibanOrdenante, String bicOrdenante,

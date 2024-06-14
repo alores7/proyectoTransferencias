@@ -33,7 +33,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import clases.Cabecera;
+import clases.Cabecera02;
 import clases.Cuerpo;
+import clases.Cuerpo02;
 import clases.Pago;
 import xml.GeneradorXMLdesdeExcel;
 import xml.MensajeDAO;
@@ -290,7 +292,10 @@ public class FrmCreadorXML extends JFrame {
 			cmbMetodoPago.setEnabled(false);
 			cmbTipo.setEnabled(true);
 		} else if(cmbFormato.getSelectedIndex() == 1) {
-			if(cmbTipo.getSelectedIndex() == 1) {
+			if(cmbTipo.getSelectedIndex() == 0) {
+				txtNif.setEnabled(true);
+				txtFecha.setEnabled(true);
+			} else {
 				txtNombre.setEnabled(true);
 				txtNif.setEnabled(true);
 				txtIban.setEnabled(true);
@@ -302,6 +307,12 @@ public class FrmCreadorXML extends JFrame {
 		} else {
 			cmbTipo.setSelectedIndex(0);
 			cmbTipo.setEnabled(false);
+			txtNombre.setEnabled(false);
+			txtNif.setEnabled(false);
+			txtIban.setEnabled(false);
+			txtBic.setEnabled(false);
+			txtFecha.setEnabled(false);
+			cmbMetodoPago.setEnabled(false);
 		}
 	}
 
@@ -319,6 +330,10 @@ public class FrmCreadorXML extends JFrame {
 			txtBic.setEnabled(false);
 			txtFecha.setEnabled(false);
 			cmbMetodoPago.setEnabled(false);
+			if(cmbFormato.getSelectedIndex() == 1) {
+				txtNif.setEnabled(true);
+				txtFecha.setEnabled(true);
+			}
 		} else {
 			lblSeleccionado.setText("Excel:");
 			lblBDoExcelInfo.setText("NO SELECCIONADO");
@@ -402,12 +417,20 @@ public class FrmCreadorXML extends JFrame {
 				int resultado = mensaje.generarXML_iso20022(cabecera, cuerpos, rutaDestino);
 				if(resultado == 1) {
 					JOptionPane.showMessageDialog(null, "XML generado con éxito!", "XML generado", JOptionPane.INFORMATION_MESSAGE);
-					crearLog(nombreLog, rutaDestino, timestamp2);
+					crearLog(nombreArchivo, rutaDestino, timestamp2);
 				} else {
 					JOptionPane.showMessageDialog(null, "Error creando el XML", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			} else if(cmbFormato.getSelectedIndex() == 1) {
-				
+				Cabecera02 cabecera = mensaje.obtenerCabeceraPorNIFyFecha(txtNif.getText(), txtFecha.getText());
+				List<Cuerpo02> pagos = mensaje.leerPagosC34(txtNif.getText(), txtFecha.getText());
+				int resultado = mensaje.generarXML_cuaderno34(cabecera, pagos, rutaDestino);
+				if(resultado == 1) {
+					JOptionPane.showMessageDialog(null, "XML generado con éxito!", "XML generado", JOptionPane.INFORMATION_MESSAGE);
+					crearLog(nombreLog, rutaDestino, timestamp2);
+				} else {
+					JOptionPane.showMessageDialog(null, "Error generando el XML", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			} else {
 				List<Pago> pagos = mensaje.getPagos();
 				int resultado = mensaje.generarCSV_c34_14(pagos, ruta2);
